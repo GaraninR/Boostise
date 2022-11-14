@@ -1,0 +1,5 @@
+insert into feedback (email, msgtext) values ('aalcido0@unblog.fr', 'est et tempus semper est quam pharetra magna ac consequat metus sapien ut nunc vestibulum ante');
+insert into feedback (email, msgtext) values ('dreedie1@altervista.org', 'nisl nunc rhoncus dui vel sem sed sagittis nam congue risus semper porta volutpat quam pede lobortis ligula sit amet');
+insert into feedback (email, msgtext) values ('vclampin2@google.com', 'vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem vitae');
+insert into feedback (email, msgtext) values ('lmatysiak3@washingtonpost.com', 'cras mi pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula');
+insert into feedback (email, msgtext) values ('rorhrt4@uol.com.br', 'elit sodales scelerisque mauris sit amet eros suspendisse accumsan tortor quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris eget massa tempor convallis');

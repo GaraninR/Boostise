@@ -1,0 +1,105 @@
+@using Newtonsoft.Json;
+@inject IConfiguration configuration
+@inject HttpClient http
+@inject NavigationManager NM
+
+<form>
+  <div class="form-group">
+    <label for="fnln">Имя и фамилия</label>
+    <input type="text" class="form-control" id="fnln" aria-describedby="fnln" placeholder="Имя и фамилия" required
+    @bind="fnln">
+  </div>
+
+  <div class="form-group">
+    <label for="phoneNumber">Номер телефона</label>
+    <input type="text" class="form-control" id="phoneNumber" aria-describedby="phoneNumber" placeholder="Номер телефона" required
+    @bind="item.phoneNumber">
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="email" aria-describedby="email" placeholder="Enter email" required
+    @bind="item.email">
+  </div>
+
+  <div class="form-group">
+    <label for="textArea">Текст объявления</label>
+    <textarea class="form-control" id="textArea" rows="5" required
+    @bind="item.advText">
+    </textarea>
+  </div>
+
+    <div class="form-group">
+        <label for="age">Возраст</label>
+        <input type="text" class="form-control" id="age" aria-describedby="age" placeholder="18" required
+        @bind="item.age">
+    </div>
+
+    <div class="form-group">
+        <label for="priceUSD">Цена USD</label>
+        <input type="text" class="form-control" id="priceUSD" aria-describedby="priceUSD" placeholder="200"
+        @bind="item.priceUSD">
+    </div>
+
+    <div class="form-group">
+        <label for="course">Курс</label>
+        <input type="text" class="form-control" id="course" aria-describedby="course" placeholder="29.99" readonly
+        @bind="item.course">
+    </div>
+
+    <div class="form-group">
+        <label for="priceUAH">Цена UAH</label>
+        <input type="text" class="form-control" id="priceUAH" aria-describedby="priceUAH" placeholder="5998" readonly
+        value="@calculatePriceUAH()">
+    </div>
+
+  <button type="submit" class="btn btn-primary sendbtn" @onclick="submitForm" @onclick:preventDefault>Submit</button>
+</form>
+
+<div class="alert alert-danger" role="alert" style="margin-top: 20px; @displayStyle">
+  Возраст подающего объявление должен быть более 18 лет
+</div>
+
+@code {
+  Item? item;
+  string? fnln;
+  Course? course;
+  string? displayStyle;
+
+  protected override void OnInitialized() {
+    this.item = new Item();
+
+    displayStyle = "display: none";
+  }
+
+  protected override async Task OnInitializedAsync() {
+     String jsonString = await http.GetStringAsync(configuration["backServer"] + "/getcourse");
+     this.course = JsonConvert.DeserializeObject<Course>(jsonString);
+
+      this.item.course = this.course.course;
+      calculatePriceUAH();
+  }
+
+  public float calculatePriceUAH() {
+    this.item.priceUAH = this.item.priceUSD * this.item.course;
+    return this.item.priceUAH;
+  }
+
+  protected async Task submitForm() {
+
+    if (this.item.age > 18) {
+
+      string[] clientFNLN = this.fnln.Split(" ");
+
+      this.item.firstName = clientFNLN[0];
+      this.item.lastName = clientFNLN[1];
+
+      await http.PostAsJsonAsync(configuration["backServer"] + "/advertisement", this.item);
+
+      NM.NavigateTo("/advlist");
+    }
+    else {
+      displayStyle = "display: block";
+    }
+  }
+}

@@ -1,0 +1,69 @@
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.menu-item {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    align-items: center;
+    text-align: center;
+
+    color: #FFFFFF;
+    background: #666666;
+
+    width: 240px;
+}
+
+.main-menu {
+    margin-top: 58px;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    color: white;
+    text-decoration: underline;
+}
+
+.page_header {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 39px;
+
+    color: #999999;
+    margin-top: 59px;
+
+}
+
+.page_content {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+
+    color: #999999;
+    margin-top: 59px;
+}
+
+.page_rooler {
+    color: #999999;
+    margin-top: 170px;
+
+}
+
+.page_footer {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    /* identical to box height */
+
+
+    color: #999999;
+}
+
+.sendbtn {
+    margin-top: 11px;
+}

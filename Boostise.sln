@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoostiseFront", "BoostiseFront\BoostiseFront.csproj", "{2F2299B7-D159-49CB-917B-4F75B9E867F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoostiseBack", "BoostiseBack\BoostiseBack.csproj", "{2D179162-105D-4203-9C37-4248D8A50CA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoostiseE2ETests", "BoostiseE2ETests\BoostiseE2ETests.csproj", "{2D179162-105D-4204-9C37-4248D8A50CA9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2F2299B7-D159-49CB-917B-4F75B9E867F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F2299B7-D159-49CB-917B-4F75B9E867F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F2299B7-D159-49CB-917B-4F75B9E867F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F2299B7-D159-49CB-917B-4F75B9E867F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D179162-105D-4203-9C37-4248D8A50CA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D179162-105D-4203-9C37-4248D8A50CA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D179162-105D-4203-9C37-4248D8A50CA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D179162-105D-4203-9C37-4248D8A50CA9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

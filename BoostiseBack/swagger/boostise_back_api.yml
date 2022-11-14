@@ -1,0 +1,119 @@
+openapi: '3.0.2'
+info:
+  title: Boostise API Back Server
+  version: '1.0'
+servers:
+  - url: http://192.168.56.82:5045/
+paths:
+  /advertisement:
+    get:
+      operationId: getAllAdvs
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Type:
+              schema:
+                type: string
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  firstName:
+                    type: string
+                  lastName:
+                    type: string
+                  phoneNumber:
+                    type: string
+                  email: 
+                    type: string
+                  advtext:
+                    type: string
+                  age:
+                    type: number
+                  priceUSD:
+                    type: number
+                  course:
+                    type: number
+                  priceUAH:
+                    type: number
+    post:
+      operationId: postAdv
+      requestBody:
+        description: Add a new advertisement
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                phoneNumber:
+                  type: string
+                email: 
+                  type: string
+                advtext:
+                  type: string
+                age:
+                  type: number
+                priceUSD:
+                  type: number
+                course:
+                  type: number
+                priceUAH:
+                  type: number
+      responses:
+        '201':
+          description: Created
+  /getcourse:
+    get:
+      operationId: getCourse
+      description: 'Get the exchange rate for the current day'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  currency:
+                    type: string
+                  course:
+                    type: number
+          headers:
+            Content-Type:
+              schema:
+                type: string
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+  /feedback:
+    post:
+      description: 'Post a new feedback'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                msgText:
+                  type: string
+      responses:
+        '201':
+          description: Created
+      

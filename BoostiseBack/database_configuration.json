@@ -1,0 +1,7 @@
+{
+    "dbhost": "192.168.56.79",
+    "dbport": "1433",
+    "dbuser": "sa",
+    "dbpass": "Pa55w0rd",
+    "dbname": "Boostise"
+}

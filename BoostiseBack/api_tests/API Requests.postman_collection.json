@@ -1,0 +1,198 @@
+{
+	"info": {
+		"_postman_id": "cc95f429-43a0-4023-89f7-3d4f83fff6d3",
+		"name": "API Requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Items",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content test\", function () {\r",
+							"    var lnft = pm.variables.get('lastNameForTest');\r",
+							"    pm.expect(pm.response.text()).to.include(lnft);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}:{{PORT}}/advertisement",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"advertisement"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post new Item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t   \"firstName\": \"Broke\",\r\n\t   \"lastName\": \"Lesnar\",\r\n\t   \"phoneNumber\": \"+38 2547 23 56\",\r\n\t   \"email\": \"lesnar@wwe.com\",\r\n\t   \"advText\": \"Aliquet risus feugiat in ante metus dictum. Lacus viverra vitae congue eu consequat ac felis donec. Vitae semper quis lectus nulla at volutpat. Quisque sagittis purus sit amet volutpat consequat mauris nunc congue. Id leo in vitae turpis massa sed elementum. Faucibus in ornare quam viverra orci sagittis eu volutpat. Ut pharetra sit amet aliquam id diam maecenas ultricies mi.\",\r\n\t   \"age\": 42,\r\n\t   \"priceUSD\": 16,\r\n\t   \"course\": 29.5,\r\n\t   \"priceUAH\": 472\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}:{{PORT}}/advertisement",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"advertisement"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get course",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Access-Control-Allow-Origin is present\", function () {\r",
+							"    pm.response.to.have.header(\"Access-Control-Allow-Origin\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Test currency value\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.currency).to.eql(\"USD\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}:{{PORT}}/getcourse",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"getcourse"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post new feedback",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Access-Control-Allow-Origin is present\", function () {\r",
+							"    pm.response.to.have.header(\"Access-Control-Allow-Origin\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"function randomString(length=1) {\r",
+							"    let randomString = \"\";\r",
+							"    for (let i = 0; i < length; i++){\r",
+							"        randomString += pm.variables.replaceIn(\"{{$randomAlphaNumeric}}\");\r",
+							"    }\r",
+							"    return randomString;\r",
+							"}\r",
+							"\r",
+							"STRING_LEN = 200\r",
+							"pm.variables.set('randomString', randomString(STRING_LEN));\r",
+							"\r",
+							"const uuid = require('uuid')\r",
+							"let email=uuid()+'@domain.com'\r",
+							"pm.environment.set('randomEmail',email)\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"{{randomEmail}}\",\r\n    \"msgText\": \"{{randomString}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}:{{PORT}}/feedback",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"feedback"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

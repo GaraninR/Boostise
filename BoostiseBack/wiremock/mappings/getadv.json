@@ -1,0 +1,15 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/getcourse"
+    },
+
+    "response": {
+        "status": 200,
+        "bodyFileName": "getcourse.json",
+        "headers":{
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*"
+        }
+    }
+}
